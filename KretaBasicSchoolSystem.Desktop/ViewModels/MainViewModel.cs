@@ -5,6 +5,7 @@ using KretaBasicSchoolSystem.Desktop.ViewModels.Base;
 using KretaBasicSchoolSystem.Desktop.ViewModels.ControlPanel;
 using KretaBasicSchoolSystem.Desktop.ViewModels.SchoolCitizens;
 using KretaBasicSchoolSystem.Desktop.ViewModels.SchoolClasses;
+using KretaBasicSchoolSystem.Desktop.ViewModels.SchoolSubjects;
 
 namespace KretaBasicSchoolSystem.Desktop.ViewModels
 {
@@ -12,23 +13,28 @@ namespace KretaBasicSchoolSystem.Desktop.ViewModels
     {
         private ControlPanelViewModel _controlPanelViewModel;
         private SchoolCitizensViewModel _schoolCitizensViewModel;
-        private SchoolClassesViewModel _SchoolClassesViewModel;
+        private SchoolClassesViewModel _schoolClassesViewModel;
+        private SchoolSubjectsViewModel _schoolSubjectsViewModel; 
 
         public MainViewModel()
         {
             _controlPanelViewModel = new ControlPanelViewModel();
             _schoolCitizensViewModel = new SchoolCitizensViewModel();
+            _schoolClassesViewModel = new SchoolClassesViewModel();
+            _schoolSubjectsViewModel = new SchoolSubjectsViewModel();
         }
 
         public MainViewModel(
             ControlPanelViewModel controlPanelViewModel,
             SchoolCitizensViewModel schoolCitizensViewModel,
-            SchoolClassesViewModel schoolClassesViewModel
+            SchoolClassesViewModel schoolClassesViewModel,
+            SchoolSubjectsViewModel schoolSubjectsViewModel
             )
         {
             _controlPanelViewModel = controlPanelViewModel;
             _schoolCitizensViewModel = schoolCitizensViewModel;
-            _SchoolClassesViewModel = schoolClassesViewModel;
+            _schoolClassesViewModel = schoolClassesViewModel;
+            _schoolSubjectsViewModel = schoolSubjectsViewModel;
 
 
             CurrentChildView = _controlPanelViewModel;
@@ -64,8 +70,16 @@ namespace KretaBasicSchoolSystem.Desktop.ViewModels
         public void ShowSchoolClasses()
         {
             Caption = "Osztályok";
-            Icon = IconChar.Fedora;
-            CurrentChildView = _SchoolClassesViewModel;
+            Icon = IconChar.FaceAngry;
+            CurrentChildView = _schoolClassesViewModel;
+        }
+
+        [RelayCommand]
+        public void ShowSchoolSubjects()
+        {
+            Caption = "Tantárgyak";
+            Icon = IconChar.BookAtlas;
+            CurrentChildView = _schoolSubjectsViewModel;
         }
     }
 }
